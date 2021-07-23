@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="752.8,1000.8" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="752.8,1480" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -71,53 +71,37 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Data Extraction Sequence" sap:VirtualizedContainerService.HintSize="527.2,936" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Sequence that extracts required data from mobile.de/ro website and store it in rawData.xlsx file" DisplayName="Main Data Extraction Sequence" sap:VirtualizedContainerService.HintSize="527.2,1272" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="urlString">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;https://www.mobile.de/ro/automobil/volkswagen-up%21-smart-fortwo/vhc:car,cnt:de,pgn:&quot;+pageNumber.ToString+&quot;,pgs:50,ms1:25200_11_,ms2:23000_4_,ful:diesel!electricity,cnd:used&quot;" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Boolean" Name="flagFinishPage">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" Value="True" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:Int32" Name="pageNumber">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" Value="1" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="[&quot;https://www.mobile.de/ro/automobil/volkswagen-up%21-smart-fortwo/vhc:car,cnt:de,pgn:&quot;+pageNumber.ToString+&quot;,pgs:50,ms1:25200_11_,ms2:23000_4_,ful:diesel!electricity,cnd:used&quot;]" Name="urlString" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="flagFinishPage" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="pageNumber" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dataTable">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New System.Data.DataTable" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dataTable" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="485.6,512.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome" sap:VirtualizedContainerService.HintSize="485.6,948" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="241.6,256" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="452,731.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Navigate to offers webpage" sap:VirtualizedContainerService.HintSize="241.6,1166.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Navigate to offers webpage" sap:VirtualizedContainerService.HintSize="410.4,68.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -491,7 +475,7 @@
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
             </Sequence>
-            <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
+            <ui:InterruptibleDoWhile Condition="[flagFinishPage]" DisplayName="Do While Data Extraction Loop" sap:VirtualizedContainerService.HintSize="410.4,528" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2">
               <ui:InterruptibleDoWhile.Body>
                 <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,360.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <sap:WorkflowViewStateService.ViewState>
@@ -507,7 +491,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NGoToUrl>
-                  <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Modificaţi căutarea'" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" Timeout="2">
+                  <uix:NCheckState Exists="{x:Null}" DisplayName="Check if offers are available" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="NCheckState_1" Timeout="2">
                     <uix:NCheckState.IfExists>
                       <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="304,156" sap2010:WorkflowViewState.IdRef="Sequence_5">
                         <sap:WorkflowViewStateService.ViewState>
@@ -537,7 +521,7 @@
                     <uix:NCheckState.Target>
                       <uix:TargetAnchorable BrowserURL="https://www.mobile.de/ro/automobil/volkswagen-up%21-smart-fortwo/vhc:car,cnt:de,pgn:100,pgs:50,ms1:25200_11_,ms2:23000_4_,ful:diesel!electricity,cnd:used" DesignTimeRectangle="896, 623, 435, 62" ElementType="Text" FriendlyName="'Modificaţi căutarea'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;p' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;p' tag='P' type='' aaname='Modificaţi căutarea sau începeţi o căutare nouă.' check:text='Modificaţi căutarea sau începeţi o căutare nouă.' /&gt;" ImageBase64="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" InformativeScreenshot="aed260297a12bffd27a49ec96c62d483.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Volkswagen up!, Smart ForTwo second-hand | Automobil second-hand | mobile.de' /&gt;" SearchSteps="Selector">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="1061, 773, 105, 45" ElementType="Text" FriendlyName="'Căutare'" FullSelectorArgument="&lt;webctrl aaname='Căutare' isleaf='1' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Căutare' isleaf='1' tag='A' type='' check:text='Căutare' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG0AAAAxCAYAAADQtCfaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAVFSURBVHhe7ZzPa1xVFMdHcFPEVRHX7V6wf4ALu3TpxiIiqdZILbhQdOPgQszO0M24KLWSTQ2GSFzUQijmRzEO0dEqqWHGmDqNlqESpikhGEYnx+/3zT0zZ968mUzTyZv38H7hS2fuPffdl/N5997zAmlGvFInDy2F8tBSqK7QtuYuyZ8fPCu/jTwupRcy3jGZ+Wbemf9u6oC2+/sNuf3OU/LH2Sdl+3RG/n0NIaPecZn5Zt6Zf3Igj7AQ2RIDSqcekXuvPBp5Qe94TQ7kEQaH3pZI1gNLlsmDXKzQ0xD30NuvPxE50Hu4Jhd7xqG1ofL7zwR7adQg7+GaXMhHhdaGfn35MV90JNTkQj4qtDbEcjNqgHcyHPBxan7y0JLtDmh7e3seWsJNPuTkoaXIHloK7aGl0B5aCj08aBMfihS+Frmz2vDKZZHpkyYGnxfQdvlYqy17TiSfEzmvMf9Pxw8t95HI5t/BhJHa/hExjAWsDXyvVQAKgK9+Arj30HDrYNByL4p86jwW0Z8ixwsth8TXgrl6yEAJA66hb/a5zuv2Y7BvaimiP0WOERq2u7vBPA0RwIwBMP52YyVtYPtrGzcge2gH8MRXwSQNAViwBUY4yzMMvvIFVhkg1t0Qqo7vZZxzWRe7gK10FyuRLhvYP+P62r6Ac5Cr1V6npn0nRK7jXK2G5qnh+wpWuV5vEvfenAfzl9FPVXGP7L+I2EroGpu47kVzHg/Q8UErIJGqDZOQbl5DgrrpPpLImCUUMKoKtl4dW3RJpZawgnfc57CWQqs/LL3PKQCIEuecRp+FRbCqGu6v28P5EI4Pmk1kEYmMirGewhO9gtUz7p7WsVfx9LrxgsRcQVtf0FwVet99p9bxPQ9PIPYakp5/r1WcjAPUrovT8zUMbQftrHiLc+a6mHPa3StBqu5iHr2vATm50OgsEj4DcEwwXTFPMc+lvqC5tl5n2hjOVlanOo8FMYV+C62OLVm350nTzqpXx9Pbrp3xdq4BOD5o102CdXvr5Tn8sHbbCWsg0LAyeP51VQQ0O0+3bbNNuEeNH5Djg3YeT59VEVtSOGYMRUMB21MWiVHVkdSraOf71XoIRjdod1wb1QuaTfoOHpIZ9x7XPOceANomihJ9D2zzAV9Rejg+aPSqSTrFs6GIHzaPlVdBVoOVhbZFkwyt0Lgq1kLQbNIIl0mf+9Y1OCmgdbO1ruFlfRJn5A8GelmLI1SU/UIbxYPXPP8Qew3za98EtvU1PKjN2ME5XmijeOo2QuCilP+sfWvcBpBqqJoMYCDRvbZQSqHZ6jUQ7mPZvoZAVUDUsyjQftBgu9qpOu7T3tMKdgkbPwDHDI3GimHFFlWG7yKx+rTOIsb+9oQv40WTeIURPvu4zel7FKVxWRQ/toIMgOBe8kh61/F9QNOfp7ninAiP73SH8CuzIUAzZtWme7+W9m1G2wX0XUAV2dFnjS2N19g3zl2PsW3JdONz+Lct/gGtv9/c9z4ezsOF5n0ge2gptIeWQntoKbSHlkJ7aCm0h5ZCe2gptIeWQntoKXQ0tJeO+L9PS6jJhXzaoFE33zrh/xI0oSYX8lGhtaEbl7Jy68zRyEHewzW5kI8KrQ2VSiVZfeO4/98NEmbyIBfyUaGnpdLCl3Lz7DH5a8SDS4LJgTzIxQq9LfGg+2n2c/l+9Lj8cvqoVEcy8s+Zzot5H56Zb+ad+ScH8tACRIXIdgWVJJbiNx+/K9+9+bQUTh2RwvMZ77iMfDPvzD85hIFRHdBUW1tbwaDl5WVZXFyU+fl570M288x8M+/Mf7RE/gOOBCJWtcEcywAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -550,7 +534,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </uix:NCheckState>
-                  <If Condition="[flagFinishPage]" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[flagFinishPage]" DisplayName="If offers are available extract data" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="If_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -558,7 +542,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,522.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,566.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -570,7 +554,7 @@
                             <uix:TargetAnchorable DesignTimeRectangle="667, -11512, 893, 19992" FriendlyName="'DIV'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div' tag='DIV' /&gt;" InformativeScreenshot="79dca9e81022fb6a52c86a0105156d22.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Volkswagen up!, Smart ForTwo second-hand | Automobil second-hand | mobile.de' /&gt;" SearchSteps="Selector" />
                           </uix:NExtractData.Target>
                         </uix:NExtractData>
-                        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign DisplayName="Increment page number" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Int32">[pageNumber]</OutArgument>
                           </Assign.To>
@@ -578,7 +562,7 @@
                             <InArgument x:TypeArguments="x:Int32">[pageNumber+1]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign DisplayName="Actualize URL" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[urlString]</OutArgument>
                           </Assign.To>
@@ -586,18 +570,21 @@
                             <InArgument x:TypeArguments="x:String">["https://www.mobile.de/ro/automobil/volkswagen-up%21-smart-fortwo/vhc:car,cnt:de,pgn:"+pageNumber.ToString+",pgs:50,ms1:25200_11_,ms2:23000_4_,ful:diesel!electricity,cnd:used"]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <ui:MergeDataTable Destination="[dataTable]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[ExtractDataTable]" />
+                        <ui:MergeDataTable sap2010:Annotation.AnnotationText="Merge extracted data in auxiliary dataTable to store it" Destination="[dataTable]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="333.6,66.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[ExtractDataTable]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:MergeDataTable>
                       </Sequence>
                     </If.Then>
                   </If>
                 </Sequence>
               </ui:InterruptibleDoWhile.Body>
-              <ui:InterruptibleDoWhile.Condition>
-                <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="flagFinishPage" />
-              </ui:InterruptibleDoWhile.Condition>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -609,22 +596,12 @@
         <uix:TargetApp Area="-9, -9, 1938, 1048" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAOCSURBVFhH7djZTuMwFAZgHmlecEbsdKUL3XfWB0LiAgmpSIiB0kIRaOiS0jP+HTtL40xjh5mrsfQrSavWHyeNFzb+t7/VLi4u6Pz8nM7OznhOT0/p5AQ5oePjY+ohvR51uz3qdLvU6XSojbTb1Gq1qdlqUbPZpAZLvdGger2B98elUumb6CJeA+7z8zM0C28WIs75wnNc0HK5JPzB/dtb4L8GiaoBYlkWz1xmbmc2n4uw8xk7Iux6ys9n/DjlxxlHAvj29kb9fp9VtRUfaQOXMYE2UgLf399pPB7Tzc0Nbvs4l4uBxG8uUEGBM63g6+srvby80HA4pOvra6rW6gyZM0PigZDA1eqFAZ2qTdXA5+dnGo1G9PT0RA8PD3R1dUWVatUMiacVQBVu7uD0gIANBgOOu7+/p7u7O7q8vKRypTIW3UZvGEo40Aezo8LhGigODQFmMhll8oUCiW6jN4xzKqCLQ1RAiRNAYFkGuK2PrHo8j6yKj/STZTgcUS5vAmSDsB8oUTJBHI+o3oQfXSCu3UxpMpnSB4tlLRgwrw/EDIGB14+S8eAkjMfGuecqnA0ETgIPcwZATF9BIG6xH4fXAeJQ1vkq7k/Vk8DsYc4AyOZVGyhQIbAgzg/048KAh/pATPyYT30omYi4ddWTwEzWBMhWJT6guM0uJIgDIhwXDkxns/pALJnkb9CLQmy0gIjXTHAOMGMAxHoOFVSiEPG6HVy77wVxSDgwlc4YANlCEzOAA0J8KE/VDHE20KJkOq0PxErYW0ElKiYOwTyfTBkAsUznFVzFeMMAcXAfHxMOTKRSBkC2h1ACWcfrYch63C8BPEgaAGv1evA36IkaJbMGxwKcA0wk9YHVWs0BqhGqMJgGTgL3EwkDYLVGFgOqIatxYetw8tb6gAcGQLYUjwDUgCErOAnc2z/QB5YrKqAAeVCRYJMgTAbAXTNgRQCDoGgoEQXKGw7c29cHlsplPg0pO40aBWg1AO4YAUsxgApIWADc3t3TBx6VSvpABWBdOHBnVx9YPIoKnBjBZADcMgMehQBtUByUNwBubu/oAwtFAK0vg4TFGJgvFvmHVV/6lUEfP7a2DYCFAv/wv8j3zS19IP4dgR0/NtXYt2JriN0XNjjYQ2CZjpUwFptYz2HJhFUJJn7MrZi+MENgEMY4h6EETyseCNxSBJUDzgj4v0VqGxu/Af19epyRUejIAAAAAElFTkSuQmCC" InformativeScreenshot="277a83ae6818bda45d35e7ee7fa0ae43.png" Selector="&lt;html app='chrome.exe' url='www.mobile.de/ro' /&gt;" Url="www.mobile.de/ro" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="485.6,290.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="datatest.xlsx">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,180.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteRange AddHeaders="False" DataTable="[dataTable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
+    <ui:WriteRange AddHeaders="False" sap2010:Annotation.AnnotationText="Store extracted data in rawData.xlsx" DataTable="[dataTable]" DisplayName="Write rawData.xlsx" sap:VirtualizedContainerService.HintSize="485.6,147.2" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" StartingCell="A1" WorkbookPath="rawData.xlsx">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WriteRange>
   </Sequence>
 </Activity>

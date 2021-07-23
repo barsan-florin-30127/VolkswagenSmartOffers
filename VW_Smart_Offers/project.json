@@ -1,7 +1,7 @@
 {
   "name": "VW_Smart_Offers",
   "description": "Blank Process",
-  "main": "DataExtraction.xaml",
+  "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.10.4]",
     "UiPath.Mail.Activities": "[1.10.5]",
@@ -44,6 +44,12 @@
     {
       "filePath": "DataExtraction.xaml",
       "uniqueId": "d7212489-adff-4f80-a159-d835a560dac0",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "e2ae4c01-d376-4428-9777-cb436434653a",
       "input": [],
       "output": []
     }
